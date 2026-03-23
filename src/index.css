@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-primary-color: #ffffff;
+  --color-background: #ffffff;
+  --color-secondary-color: #1a1a2e;
+  --color-base-color: #1a1a2e;
+  --color-anchor: #1a1a2e;
+  --color-highlight: #f1f5f9;
+  --color-input-color: #f1f5f9;
+  --color-error: #e53935;
+  --color-success: #00c566;
+  --color-warning: #facc15;
+}
+
+.button{
+  @apply cursor-pointer
+}
+
+button, [role="button"], [type="button"], [type="submit"] {
+  cursor: pointer;
+}
+
+html,
+body {
+  font-family: "Figtree", sans-serif;
+  scroll-behavior: smooth;
+  background-color: #fafafa;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #1a1a2e, #1a1a2e);
+  margin-left: 2px;
+  margin-right: 2px;
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+th {
+  border-bottom: 0px solid #0a0a08 !important;
+}
+
+.swiper-pagination-bullet {
+  width: 15px !important;
+  height: 15px !important;
+  background-color: #1a1a2e !important;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.active {
+  color: #f9f9f9 !important;
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* :root (light mode) */
+:root {
+  --radius: 0.625rem;
+
+  /* Background & Foreground Colors */
+  --background: #ffffff;
+  --foreground: #1a1a2e;
+
+  /* Card Colors */
+  --card: #ffffff;
+  --card-foreground: #1a1a2e;
+
+  /* Popover Colors */
+  --popover: #ffffff;
+  --popover-foreground: #1a1a2e;
+
+  /* Primary and Secondary Colors */
+  --primary: #1a1a2e;
+  --primary-foreground: #ffffff;
+  --secondary: #1a1a2e;
+  --secondary-foreground: #ffffff;
+
+  /* Muted Colors */
+  --muted: #f1f5f9;
+  --muted-foreground: #1a1a2e;
+
+  /* Accent Colors */
+  --accent: #f1f5f9;
+  --accent-foreground: #1a1a2e;
+
+  /* Destructive Colors */
+  --destructive: #e53935;
+
+  /* Border Colors */
+  --border: #f1f5f9;
+
+  /* Input Colors */
+  --input: #f1f5f9;
+
+  /* Ring Colors */
+  --ring: #1a1a2e;
+
+  /* Chart Colors */
+  --chart-1: #1a1a2e;
+  --chart-2: #1a1a2e;
+  --chart-3: #00c566;
+  --chart-4: #facc15;
+  --chart-5: #1a1a2e;
+
+  /* Sidebar Colors */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1a1a2e;
+  --sidebar-primary: #1a1a2e12;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1a1a2e12;
+  --sidebar-accent-foreground: #1a1a2e;
+  --sidebar-border: #f1f5f9;
+  --sidebar-ring: #1a1a2e;
+}
+
+/* .dark (dark mode) */
+.dark {
+  --background: #1a1a2e;
+  --foreground: #ffffff;
+
+  /* Card Colors */
+  --card: #1a1a2e;
+  --card-foreground: #ffffff;
+
+  /* Popover Colors */
+  --popover: #1a1a2e;
+  --popover-foreground: #ffffff;
+
+  /* Primary and Secondary Colors */
+  --primary: #1a1a2e;
+  --primary-foreground: #ffffff;
+  --secondary: #1a1a2e;
+  --secondary-foreground: #ffffff;
+
+  /* Muted Colors */
+  --muted: #f1f5f9;
+  --muted-foreground: #1a1a2e;
+
+  /* Accent Colors */
+  --accent: #f1f5f9;
+  --accent-foreground: #1a1a2e;
+
+  /* Destructive Colors */
+  --destructive: #e53935;
+
+  /* Border Colors */
+  --border: #1a1a2e;
+
+  /* Input Colors */
+  --input: #f1f5f9;
+
+  /* Ring Colors */
+  --ring: #1a1a2e;
+
+  /* Chart Colors */
+  --chart-1: #1a1a2e;
+  --chart-2: #1a1a2e;
+  --chart-3: #00c566;
+  --chart-4: #facc15;
+  --chart-5: #1a1a2e;
+
+  /* Sidebar Colors */
+  --sidebar: #1a1a2e;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #1a1a2e;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1a1a2e;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #1a1a2e;
+  --sidebar-ring: #1a1a2e;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
