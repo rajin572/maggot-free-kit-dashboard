@@ -29,12 +29,17 @@ const baseQuery: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> =
   const result = await rawBaseQuery(args, api, extraOptions);
 
   if (result.error && result.error.status === 401) {
-    // Clear all auth cookies and redirect to sign-in
-    Cookies.remove("maggot_dashboard_accessToken", { path: "/" });
-    Cookies.remove("maggot_dashboard_loginTempToken", { path: "/" });
-    Cookies.remove("maggot_dashboard_forgetToken", { path: "/" });
-    Cookies.remove("maggot_dashboard_forgetOtpMatchToken", { path: "/" });
-    window.location.href = "/sign-in";
+    // Only auto-logout if the user had an active session (accessToken exists).
+    // Auth endpoint failures (wrong password, expired OTP) also return 401
+    // but should NOT cause a redirect — just show the error toast.
+    const hasActiveSession = !!Cookies.get("maggot_dashboard_accessToken");
+    if (hasActiveSession) {
+      Cookies.remove("maggot_dashboard_accessToken", { path: "/" });
+      Cookies.remove("maggot_dashboard_loginTempToken", { path: "/" });
+      Cookies.remove("maggot_dashboard_forgetToken", { path: "/" });
+      Cookies.remove("maggot_dashboard_forgetOtpMatchToken", { path: "/" });
+      window.location.href = "/sign-in";
+    }
   }
 
   return result;

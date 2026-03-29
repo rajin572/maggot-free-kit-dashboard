@@ -4,11 +4,13 @@ import { Input } from "@/Components/ui/input";
 import { Button } from "@/Components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/Components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/Components/ui/table";
-import { Trash2, Download, Clock } from "lucide-react";
+import { Trash2, Download, Clock, FileText } from "lucide-react";
 import tryCatchWrapper from "@/utils/tryCatchWrapper";
 import ConfirmModal from "@/Components/ui/CustomUi/Modal/ConfirmModal";
 import { getBaseUrl } from "@/helpers/config/envConfig";
 import Cookies from "js-cookie";
+import { downloadInvoiceFromApi } from "@/utils/downloadInvoice";
+import { toast } from "sonner";
 
 const STATUS_OPTIONS = ["all", "pending", "approved", "completed", "declined", "cancelled"];
 const STATUS_COLORS: Record<string, string> = {
@@ -310,6 +312,20 @@ const OrdersPage = () => {
                       onClick={() => setTimelineOrder(order)}
                     >
                       <Clock size={14} />
+                    </Button>
+                    <Button
+                      size="icon" variant="ghost"
+                      className="h-7 w-7 text-blue-500 hover:text-blue-700"
+                      title="Admin Invoice"
+                      onClick={async () => {
+                        try {
+                          await downloadInvoiceFromApi(String(order._id), order.orderId, "admin");
+                        } catch {
+                          toast.error("Invoice download ব্যর্থ হয়েছে");
+                        }
+                      }}
+                    >
+                      <FileText size={14} />
                     </Button>
                     <Button size="icon" variant="ghost" className="h-7 w-7 text-red-500 hover:text-red-700" onClick={() => handleDeleteClick(order)}>
                       <Trash2 size={14} />

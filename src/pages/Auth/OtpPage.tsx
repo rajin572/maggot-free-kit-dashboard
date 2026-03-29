@@ -5,6 +5,7 @@ import { MdVerifiedUser } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import Container from "@/Components/ui/CustomUi/Container";
+import AuthLogo from "@/Components/Shared/AuthLogo";
 import { Button } from "@/Components/ui/button";
 import { useForgetOtpVerifyMutation, useResendForgetOTPMutation } from "@/redux/features/auth/authApi";
 import tryCatchWrapper from "@/utils/tryCatchWrapper";
@@ -61,13 +62,16 @@ const OTPVerify = () => {
         <div className="min-h-screen flex justify-center items-center text-center">
           <div className="w-full max-w-150 mx-auto bg-highlight-color p-6 rounded-2xl">
             <div className="mb-8">
-              <MdVerifiedUser className="size-10 mb-4 text-base-color mx-auto" />
-              <h1 className="text-2xl sm:text-3xl font-semibold text-base-color mb-5">
-                Verify Your Email
-              </h1>
-              <p className="text-lg sm:text-xl mb-2 text-base-color">
-                We sent a password reset link to
-                <span className="text-secondary-color font-bold">{" "}{forgottenEmail}</span>
+              <AuthLogo />
+              <div className="flex items-center justify-center gap-2 -mt-4 mb-3">
+                <MdVerifiedUser className="size-5 text-secondary-color" />
+                <h1 className="text-xl sm:text-2xl font-semibold text-base-color">
+                  ইমেইল যাচাই করুন
+                </h1>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                পাসওয়ার্ড রিসেটের OTP পাঠানো হয়েছে{" "}
+                <span className="text-secondary-color font-bold">{forgottenEmail}</span>-এ
               </p>
             </div>
 

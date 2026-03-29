@@ -3,6 +3,7 @@ import { MdVerifiedUser } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import Container from "@/Components/ui/CustomUi/Container";
+import AuthLogo from "@/Components/Shared/AuthLogo";
 import { Button } from "@/Components/ui/button";
 import { useVerifyLoginOtpMutation } from "@/redux/features/auth/authApi";
 import tryCatchWrapper from "@/utils/tryCatchWrapper";
@@ -43,15 +44,13 @@ const LoginOtpPage = () => {
         <div className="min-h-screen flex justify-center items-center text-center">
           <div className="w-full max-w-150 mx-auto bg-highlight-color p-6 rounded-2xl">
             <div className="mb-8">
-              <div
-                className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto"
-                style={{ background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)" }}
-              >
-                <MdVerifiedUser className="size-8 text-white" />
+              <AuthLogo />
+              <div className="flex items-center justify-center gap-2 -mt-4 mb-3">
+                <MdVerifiedUser className="size-5 text-secondary-color" />
+                <h1 className="text-xl sm:text-2xl font-semibold text-base-color">
+                  ইমেইল যাচাই করুন
+                </h1>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-semibold text-base-color mb-3">
-                ইমেইল যাচাই করুন
-              </h1>
               <p className="text-sm text-muted-foreground">
                 আপনার ইমেইলে একটি ৬-সংখ্যার OTP পাঠানো হয়েছে।
                 <br />লগইন সম্পন্ন করতে OTP প্রবেশ করুন।
