@@ -15,7 +15,16 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible={"icon"} variant={"sidebar"}>
       <SidebarHeader>
-        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground">ম্যাগট-ফ্রি</h1>
+        <div className="flex items-center gap-3 px-1 py-2">
+          <img
+            src="/images/logo.png"
+            alt="ম্যাগট-ফ্রি কিট"
+            className="w-9 h-9 rounded-xl object-contain shrink-0"
+          />
+          <span className="text-lg font-bold text-foreground truncate group-data-[collapsible=icon]:hidden">
+            ম্যাগট-ফ্রি কিট
+          </span>
+        </div>
       </SidebarHeader>
       <SidebarContent>
         {adminRoutes?.map((props) => (

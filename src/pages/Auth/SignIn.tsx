@@ -1,5 +1,6 @@
 import { Button } from "@/Components/ui/button";
 import Container from "@/Components/ui/CustomUi/Container";
+import AuthLogo from "@/Components/Shared/AuthLogo";
 import { FormInput, FormPassword } from "@/Components/ui/CustomUi/ReuseForm/Form";
 import { FieldGroup } from "@/Components/ui/field";
 import useUserData from "@/hooks/useUserData";
@@ -58,23 +59,10 @@ const SignIn = () => {
             <Container>
                 <div className="min-h-screen flex justify-center items-center">
                     <div className="w-full max-w-150 mx-auto bg-highlight-color p-6 rounded-2xl">
-                        {/* -------- Sign In Page Header ------------ */}
-                        <div className="flex flex-col justify-center items-center">
-                            <div
-                                className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mt-5"
-                                style={{ background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)" }}
-                            >
-                                <span className="text-white text-2xl font-bold">M</span>
-                            </div>
-                            <div className="text-center mb-8">
-                                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 text-secondary-color">
-                                    ম্যাগট-ফ্রি কিট ড্যাশবোর্ড
-                                </h1>
-                                <h4 className="text-sm sm:text-base lg:text-lg text-secondary-color">
-                                    অ্যাডমিন লগইন
-                                </h4>
-                            </div>
-                        </div>
+                        <AuthLogo />
+                        <h4 className="text-sm sm:text-base text-center text-secondary-color -mt-4 mb-6">
+                            অ্যাডমিন লগইন
+                        </h4>
                         <form onSubmit={form.handleSubmit(onFinish)}>
                             <FieldGroup>
                                 <FormInput prefix={<MdOutlineEmail size={20} />} control={form.control} name="email" label="Email" placeholder="Enter your email" />

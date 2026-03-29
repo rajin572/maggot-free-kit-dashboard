@@ -15,6 +15,7 @@ import { useForgetPasswordMutation } from "@/redux/features/auth/authApi";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import useUserData from "@/hooks/useUserData";
+import AuthLogo from "@/Components/Shared/AuthLogo";
 
 
 const forgetPassSchema = z.object({
@@ -67,15 +68,16 @@ const ForgotPassword = () => {
             <Container>
                 <div className="min-h-screen flex justify-center items-center ">
                     <div className="w-full max-w-150 mx-auto bg-highlight-color p-6 rounded-2xl">
-                        <div className="mb-8">
-                            <div className="bg-[#0C0C0C0D] w-fit mx-auto p-2 rounded-full  mb-4">
-                                <RiKey2Line className="size-10 text-base-color mx-auto" />
+                        <div className="mb-8 text-center">
+                            <AuthLogo />
+                            <div className="flex items-center justify-center gap-2 -mt-4 mb-3">
+                                <RiKey2Line className="size-5 text-secondary-color" />
+                                <h1 className="text-xl sm:text-2xl font-semibold text-base-color">
+                                    পাসওয়ার্ড ভুলে গেছেন?
+                                </h1>
                             </div>
-                            <h1 className="text-2xl sm:text-3xl font-semibold text-base-color mb-5 text-center">
-                                Forgot Password
-                            </h1>
-                            <p className=" sm:text-lg mb-2 text-base-color text-center">
-                                No Worries, we’ll send you reset instruction
+                            <p className="text-sm text-muted-foreground">
+                                চিন্তা নেই! আপনার ইমেইলে রিসেট নির্দেশনা পাঠানো হবে।
                             </p>
                         </div>
 

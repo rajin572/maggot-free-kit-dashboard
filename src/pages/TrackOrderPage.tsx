@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useLazyAdminTrackOrderQuery } from "@/redux/features/order/orderApi";
 import { Input } from "@/Components/ui/input";
 import { Button } from "@/Components/ui/button";
-import { Search } from "lucide-react";
+import { Search, Download } from "lucide-react";
 import { formetDateAndTime } from "@/utils/dateFormet";
+import { downloadInvoiceFromApi } from "@/utils/downloadInvoice";
+import { toast } from "sonner";
 
 const STATUS_LABELS: Record<string, string> = {
   pending: "অপেক্ষমান",
@@ -24,6 +26,20 @@ const STATUS_STYLES: Record<string, string> = {
 const TrackOrderPage = () => {
   const [orderId, setOrderId] = useState("");
   const [triggerSearch, { data, isFetching, isError }] = useLazyAdminTrackOrderQuery();
+  const [dlLoading, setDlLoading] = useState<"admin" | "user" | null>(null);
+
+  const handleDownload = async (type: "admin" | "user") => {
+    const order = data?.data;
+    if (!order) return;
+    setDlLoading(type);
+    try {
+      await downloadInvoiceFromApi(String(order._id), order.orderId, type);
+    } catch {
+      toast.error("Invoice download করা সম্ভব হয়নি");
+    } finally {
+      setDlLoading(null);
+    }
+  };
 
   const handleSearch = () => {
     if (!orderId.trim()) return;
@@ -65,9 +81,30 @@ const TrackOrderPage = () => {
               <p className="text-xs text-muted-foreground">অর্ডার আইডি</p>
               <p className="font-mono font-semibold">{order.orderId}</p>
             </div>
-            <span className={`text-xs px-3 py-1 rounded-full font-medium ${STATUS_STYLES[order.status] ?? "bg-gray-100 text-gray-600"}`}>
-              {STATUS_LABELS[order.status] ?? order.status}
-            </span>
+            <div className="flex items-center gap-2">
+              <span className={`text-xs px-3 py-1 rounded-full font-medium ${STATUS_STYLES[order.status] ?? "bg-gray-100 text-gray-600"}`}>
+                {STATUS_LABELS[order.status] ?? order.status}
+              </span>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => handleDownload("user")}
+                disabled={!!dlLoading}
+                className="gap-1.5 text-xs"
+              >
+                <Download size={13} />
+                {dlLoading === "user" ? "..." : "User Invoice"}
+              </Button>
+              <Button
+                size="sm"
+                onClick={() => handleDownload("admin")}
+                disabled={!!dlLoading}
+                className="gap-1.5 text-xs"
+              >
+                <Download size={13} />
+                {dlLoading === "admin" ? "..." : "Admin Invoice"}
+              </Button>
+            </div>
           </div>
 
           <div className="p-6 space-y-5">
